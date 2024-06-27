@@ -55,13 +55,13 @@
             border: none;
             display: none;
         }
-        #shareBtn {
+        #copybutton {
             position: absolute;
             top: 20px;
             right: 20px;
             background-color: #28a745;
         }
-        #shareBtn:hover {
+        #copybutton:hover {
             background-color: #218838;
         }
         @media (max-width: 600px) {
@@ -71,7 +71,7 @@
             button {
                 width: 100%;
             }
-            #shareBtn {
+            #copybutton {
                 position: static;
                 margin-top: 10px;
             }
@@ -81,8 +81,7 @@
 <body>
     <div class="container">
         <h1>CJ대한통운 상세조회</h1>
-        <button id="shareBtn" onclick="shareTracking()">공유</button>
-        <button id="shareBtn">공유</button>
+        <button id="copybutton" onclick="shareTracking()">공유</button>
         <div class="tracking-form">
             <input type="text" id="trackingNumber" placeholder="운송장번호 입력">
             <button onclick="trackParcel()">조회</button>
