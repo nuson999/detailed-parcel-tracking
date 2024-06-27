@@ -82,6 +82,7 @@
     <div class="container">
         <h1>CJ대한통운 상세조회</h1>
         <button id="shareBtn" onclick="shareTracking()">공유</button>
+        <button>test</button>
         <div class="tracking-form">
             <input type="text" id="trackingNumber" placeholder="운송장번호 입력">
             <button onclick="trackParcel()">조회</button>
@@ -99,7 +100,7 @@
             const frame = document.getElementById('trackingFrame');
             
             if (trackingNumber) {
-                const url = `http://www.doortodoor.co.kr/tracking/jsp/cmn/Tracking_new.jsp?QueryType=3&pTdNo=${encodeURIComponent(trackingNumber)}`;
+                const url = `https://www.doortodoor.co.kr/tracking/jsp/cmn/Tracking_new.jsp?QueryType=3&pTdNo=${encodeURIComponent(trackingNumber)}`;
                 frame.src = url;
                 frame.style.display = 'block';
                 // Update URL without reloading the page
