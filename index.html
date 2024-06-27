@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>택배 상세 배송조회</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #f4f4f4;
+            --text-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .tool-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            overflow: hidden;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tool-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .tool-info {
+            padding: 1.5rem;
+        }
+
+        .tool-info h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .tool-info p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn:hover {
+            background-color: #27ae60;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .tool-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>택배 상세 배송조회</h1>
+            <p>Discover and use our amazing collection of tools</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="tool-grid">
+            <div class="tool-card">
+                <img src="/api/placeholder/400/300" alt="Tool 1">
+                <div class="tool-info">
+                    <h2>CJ대한통운</h2>
+                    <p>Deep dive into the world of physics!</p>
+                    <a href="/cj-logistics-tracking.html" class="btn">조회</a>
+                </div>
+            </div>
+            <div class="tool-card">
+                <img src="/api/placeholder/400/300" alt="Tool 2">
+                <div class="tool-info">
+                    <h2>Snow</h2>
+                    <p>Solve complex problems with ease using this tool.</p>
+                    <a href="#" class="btn">Use Tool</a>
+                </div>
+            </div>
+            <div class="tool-card">
+                <img src="/api/placeholder/400/300" alt="Tool 3">
+                <div class="tool-info">
+                    <h2>Superb Tool 3</h2>
+                    <p>Enhance your workflow with this powerful tool.</p>
+                    <a href="#" class="btn">Use Tool</a>
+                </div>
+            </div>
+            <div class="tool-card">
+                <img src="/api/placeholder/400/300" alt="Tool 4">
+                <div class="tool-info">
+                    <h2>Incredible Tool 4</h2>
+                    <p>Transform your data with this innovative tool.</p>
+                    <a href="#" class="btn">Use Tool</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
