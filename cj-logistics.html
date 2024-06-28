@@ -1,138 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CJ대한통운 상세조회</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f0f0f0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            position: relative;
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f0f0f0;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+      h1 {
+        color: #333;
+        text-align: center;
+      }
+      .tracking-form {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      input[type="text"] {
+        flex-grow: 1;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      iframe {
+        width: 100%;
+        height: 100vh;
+        border: none;
+        display: none;
+      }
+      #copybutton {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background-color: #28a745;
+      }
+      #copybutton:hover {
+        background-color: #218838;
+      }
+      @media (max-width: 600px) {
         .tracking-form {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        input[type="text"] {
-            flex-grow: 1;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+          flex-direction: column;
         }
         button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        iframe {
-            width: 100%;
-            height: 600px;
-            border: none;
-            display: none;
+          width: 100%;
         }
         #copybutton {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: #28a745;
+          position: static;
+          margin-top: 10px;
         }
-        #copybutton:hover {
-            background-color: #218838;
-        }
-        @media (max-width: 600px) {
-            .tracking-form {
-                flex-direction: column;
-            }
-            button {
-                width: 100%;
-            }
-            #copybutton {
-                position: static;
-                margin-top: 10px;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>CJ대한통운 상세조회</h1>
-        <button id="copybutton" onclick="shareTracking()">공유</button>
-        <div class="tracking-form">
-            <input type="text" id="trackingNumber" placeholder="운송장번호 입력">
-            <button onclick="trackParcel()">조회</button>
-        </div>
-        <iframe id="trackingFrame"></iframe>
+      <h1>CJ대한통운 상세조회</h1>
+      <button id="copybutton" onclick="shareTracking()">공유</button>
+      <div class="tracking-form">
+        <input type="text" id="trackingNumber" placeholder="운송장번호 입력" />
+        <button onclick="trackParcel()">조회</button>
+      </div>
+      <iframe id="trackingFrame"></iframe>
     </div>
 
     <script>
-        function trackParcel() {
-            const trackingNumber = document.getElementById('trackingNumber').value.trim();
-            loadTracking(trackingNumber);
-        }
+      function trackParcel() {
+        const trackingNumber = document
+          .getElementById("trackingNumber")
+          .value.trim();
+        loadTracking(trackingNumber);
+      }
 
-        function loadTracking(trackingNumber) {
-            const frame = document.getElementById('trackingFrame');
-            
-            if (trackingNumber) {
-                const url = `https://www.doortodoor.co.kr/tracking/jsp/cmn/Tracking_new.jsp?QueryType=3&pTdNo=${encodeURIComponent(trackingNumber)}`;
-                frame.src = url;
-                frame.style.display = 'block';
-                // Update URL without reloading the page
-                history.pushState({}, '', `?tracking=${encodeURIComponent(trackingNumber)}`);
-            } else {
-                alert('운송장번호를 입력하세요');
-            }
-        }
+      function loadTracking(trackingNumber) {
+        const frame = document.getElementById("trackingFrame");
 
-        function shareTracking() {
-            const trackingNumber = document.getElementById('trackingNumber').value.trim();
-            if (trackingNumber) {
-                const shareUrl = `${window.location.origin}${window.location.pathname}?tracking=${encodeURIComponent(trackingNumber)}`;
-                navigator.clipboard.writeText(shareUrl).then(() => {
-                    alert('링크를 복사했습니다!');
-                }).catch(err => {
-                    console.error('공유 실패: ', err);
-                    alert('링크를 복사할 수 없습니다.');
-                });
-            } else {
-                alert('운송장번호를 입력해주세요');
-            }
+        if (trackingNumber) {
+          const url = `https://www.doortodoor.co.kr/tracking/jsp/cmn/Tracking_new.jsp?QueryType=3&pTdNo=${encodeURIComponent(
+            trackingNumber
+          )}`;
+          frame.src = url;
+          frame.style.display = "block";
+          // Update URL without reloading the page
+          history.pushState(
+            {},
+            "",
+            `?tracking=${encodeURIComponent(trackingNumber)}`
+          );
+        } else {
+          alert("운송장번호를 입력하세요");
         }
+      }
 
-        // Check for tracking number in URL on page load
-        window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const trackingNumber = urlParams.get('tracking');
-            if (trackingNumber) {
-                document.getElementById('trackingNumber').value = trackingNumber;
-                loadTracking(trackingNumber);
-            }
-        };
+      function shareTracking() {
+        const trackingNumber = document
+          .getElementById("trackingNumber")
+          .value.trim();
+        if (trackingNumber) {
+          const shareUrl = `${window.location.origin}${
+            window.location.pathname
+          }?tracking=${encodeURIComponent(trackingNumber)}`;
+          navigator.clipboard
+            .writeText(shareUrl)
+            .then(() => {
+              alert("링크를 복사했습니다!");
+            })
+            .catch((err) => {
+              console.error("공유 실패: ", err);
+              alert("링크를 복사할 수 없습니다.");
+            });
+        } else {
+          alert("운송장번호를 입력해주세요");
+        }
+      }
+
+      // Check for tracking number in URL on page load
+      window.onload = function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const trackingNumber = urlParams.get("tracking");
+        if (trackingNumber) {
+          document.getElementById("trackingNumber").value = trackingNumber;
+          loadTracking(trackingNumber);
+        }
+      };
     </script>
-</body>
+  </body>
 </html>
